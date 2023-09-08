@@ -137,15 +137,18 @@ TodoList
 On va découper cette interface en 3 composants :
 - `TodoList` :
   - stocke en `state` un tableau d'objets de la forme `{id, text, done}`
-  - définit une fonction d'ajout `addItem(formData)`
+  - définit une fonction d'ajout `addItem(formData)` (voir https://developer.mozilla.org/en-US/docs/Web/API/FormData)
   - définit une fonction de modification `updateItem(id, changes)`
   - définit une fonction de suppression `removeItem(id)`
 - `ItemsList` :
   - reçoit en entrée (`props`) le tableau d'items, la fonction de modification et la fonction de suppression
-  - affiche les différents items de la liste ainsi que, pour chacun, un bouton permettant de le marquer/démarquer et un bouton permettant de le supprimer
+  - affiche les différents items de la liste ainsi que, pour chacun, un bouton permettant de le marquer/démarquer (ce qui constitue une modification) et un bouton permettant de le supprimer
+  - afficher les items effectués en texte barré
+  - ajouter une checkbox permettant de masquer/afficher les items déjà effectués
 - `AddItemForm`
   - reçoit en entrée (`props`) la fonction d'ajout
   - affiche un formulaire composé d'un `input` et d'un bouton
+  - à la soumission du formulaire, appelle la fonction d'ajout avec un objet standard `FormData` et vide l'`input`
 
 Ajouter une instance de `TodoList` dans le composant principal.
 
