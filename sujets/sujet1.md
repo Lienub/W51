@@ -136,19 +136,20 @@ TodoList
 
 On va découper cette interface en 3 composants :
 - `TodoList` :
-  - stocke en `state` un tableau d'objets de la forme `{id, text, done}`
-  - définit une fonction d'ajout `addItem(formData)` (voir https://developer.mozilla.org/en-US/docs/Web/API/FormData)
-  - définit une fonction de modification `updateItem(id, changes)`
-  - définit une fonction de suppression `removeItem(id)`
+  - stocke en `state` un tableau d'objets de la forme `{id, text, done}`.
+  - définit une fonction d'ajout `addItem(formData)` : écrase le tableau d'objets du state par un nouveau tableau contenant les anciens items + un nouvel item. L'objet `FormData` reçu en paramètre contiendra un champ nommé `"item"` (voir https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+  - définit une fonction de modification `updateItem(id, changes)` : écrase le tableau d'objets du state par un nouveau tableau contenant les anciens items. L'item dont l'`id` correspond à celui reçu en paramètre est remplacé par un nouvel item dont les champs sont fusionnés avec ceux de l'objet `changes` reçu en paramètre.
+  - définit une fonction de suppression `removeItem(id)` : écrase le tableau d'objets du state par un nouveau tableau contenant les anciens items sauf celui dont l'`id` correspond à celui reçu en paramètre.
 - `ItemsList` :
-  - reçoit en entrée (`props`) le tableau d'items, la fonction de modification et la fonction de suppression
-  - affiche les différents items de la liste ainsi que, pour chacun, un bouton permettant de le marquer/démarquer (ce qui constitue une modification) et un bouton permettant de le supprimer
-  - afficher les items effectués en texte barré
-  - ajouter une checkbox permettant de masquer/afficher les items déjà effectués
+  - reçoit en entrée (`props`) le tableau d'items, la fonction de modification et la fonction de suppression.
+  - affiche les différents items de la liste ainsi que, pour chacun, un bouton permettant de le marquer/démarquer (ce qui constitue une modification) et un bouton permettant de le supprimer.
+  - afficher les items effectués en texte barré.
+  - ajouter une checkbox permettant de masquer/afficher les items déjà effectués (en filtrant la liste des items).
 - `AddItemForm`
-  - reçoit en entrée (`props`) la fonction d'ajout
-  - affiche un formulaire composé d'un `input` et d'un bouton
-  - à la soumission du formulaire, appelle la fonction d'ajout avec un objet standard `FormData` et vide l'`input`
+  - reçoit en entrée (`props`) la fonction d'ajout.
+  - affiche un formulaire composé d'un `input` et d'un bouton.
+  - à la soumission du formulaire, appelle la fonction d'ajout avec un objet standard `FormData` et vide l'`input`.
+  - _nul besoin de state dans ce composant._
 
 Ajouter une instance de `TodoList` dans le composant principal.
 
