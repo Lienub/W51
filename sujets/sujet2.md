@@ -62,6 +62,8 @@ fetch(someURL)
 });
 ```
 
+> Essayer de faire des requêtes auprès de l'API en utilisant par exemple le navigateur (en collant l'URL dans la barre d'adresse) et regarder le contenu de la réponse dans différents cas (vous pouvez mettre la chaîne JSON en forme avec un outil en ligne comme par exemple https://jsonformatter.curiousconcept.com/).
+
 > **Attention** : en cas d'absence de données correspondant à la recherche, l'API renvoie bien une réponse avec un contenu au format JSON, mais le champ `drinks` n'est pas un tableau vide (comme on aurait pu s'y attendre) mais la valeur `null`.
 
 - une fois la réponse obtenue, parser le texte de la réponse qui est au format JSON.
