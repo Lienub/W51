@@ -207,24 +207,8 @@ Afin de conserver la partie query string au moment du clic sur un `<Link>`, on p
 Ajouter un délai artificiel
 ---
 
-Afin de mieux voir les états intermédiaires de l'interface pendant les phases de chargement et d'attente de données, on peut se doter d'une petite fonction utilitaire que l'on peut appeler au moment de déclencher des requêtes. La fonction suivante retourne une nouvelle Promise qui se résout (sans fournir de données) au bout d'un temps aléatoire compris en 0 et `max` millisecondes.
-
-```js
-function delay(max) {
-  return new Promise(resolve => {
-    setTimeout(resolve, Math.random() * max);
-  });
-}
-```
-
-Vous pouvez exporter cette fonction depuis un module, puis l'importer et l'utiliser par exemple dans un `loader` de la façon suivante :
-```js
-return delay(1000)
-  .then(() => fetch(URL))
-  ...
-```
-
-Si vous voulez un délai constant, vous pouvez aussi bien enlever la partie aléatoire de la fonction.
+Afin de mieux voir les états intermédiaires de l'interface pendant les phases de chargement et d'attente de données, on peut demander au navigateur de ralentir les requêtes.
+Dans les outils "développeurs" de votre navigateur, dans l'onglet "Network", vous pouvez choisir de simuler une connexion lente (par exemple "Slow 3G").
 
 Amélioration de l'UX
 ---
