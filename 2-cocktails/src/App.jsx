@@ -44,7 +44,7 @@ function CocktailsList({ cocktails, setCocktail }) {
     </div>;
 }
 
-function SearchCocktailForm({ searchCocktail, setCocktail }) {
+function SearchCocktailForm({ searchCocktail }) {
     function handleSubmit(event) {
         event.preventDefault()
         searchCocktail(event.target.text.value)
