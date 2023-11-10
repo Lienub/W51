@@ -2,9 +2,10 @@ import { useLoaderData, useFetcher, Outlet } from 'react-router-dom';
 
 import * as api from '@/api';
 
-export function loader({ params }) {
-  // TODO: récupérer les données nécessaires auprès de l'API
-  return []; // à supprimer
+export async function loader({ params }) {
+  const data = await api.getSemestreRessources(params.semestreId);
+  
+  return {ressources : data, semestreID : params.semestreId ?? []};
 }
 
 export function action({ request, params }) {
@@ -23,10 +24,19 @@ export function action({ request, params }) {
 
 export default function Ressources() {
   // TODO: récupérer les données du loader
-
+  let data = useLoaderData();
+  let fetcher = useFetcher();
   return <>
     {/* formulaire d'ajout d'une ressource (géré par un fetcher) */}
-
+    <fetcher.Form method="post" action={`/semestres/${data.semestreID}/ressources`}>
+      Nom :<input type="text" name="nom" id="nom" />
+      <br/>
+      Nbh CM : <input type="text" name="hcm" id="hcm" />
+      Nbh TD : <input type="text" name="htd" id="htd" />
+      Nbh TP : <input type="text" name="htp" id="htp" />
+      <br/>
+      <button type="submit">Ajouter une ressource </button>
+    </fetcher.Form>
     {/* affichage des ressources */}
   </>;
 }

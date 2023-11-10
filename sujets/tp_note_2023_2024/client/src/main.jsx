@@ -50,8 +50,23 @@ const router = createBrowserRouter([
                 action: generalAction,
                 element: <General />
               },
-              // TODO: ajouter la déclaration des routes manquantes
-              // (ues, ressources, total)
+              {
+                path: 'ues',
+                loader: UEsLoader,
+                action: UEsAction,
+                element: <UEs />
+              },
+              {
+                path: 'ressources',
+                loader: ressourcesLoader,
+                action: ressourcesAction,
+                element: <Ressources />
+              },
+              {
+                path: 'total',
+                loader: totalLoader,
+                element: <Total />
+              }
             ]
           }
         ]
